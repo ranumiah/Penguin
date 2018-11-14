@@ -8,4 +8,8 @@
     <PackageReference Include="NLog.Extensions.Logging" Version="1.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Penguin.Contracts\Penguin.Contracts.csproj" />
+  </ItemGroup>
+
 </Project>
