@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Penguin.Contracts;
 
 namespace Penguin.Api.Controllers
 {
@@ -10,10 +8,21 @@ namespace Penguin.Api.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly ILoggerManager _logger;
+
+        public ValuesController(ILoggerManager logger)
+        {
+            _logger = logger;
+        }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public IEnumerable<string> Get()
         {
+            _logger.LogInfo("Here is info message from our values controller.");
+            _logger.LogDebug("Here is debug message from our values controller.");
+            _logger.LogWarn("Here is warn message from our values controller.");
+            _logger.LogError("Here is error message from our values controller.");
+
             return new string[] { "value1", "value2" };
         }
 

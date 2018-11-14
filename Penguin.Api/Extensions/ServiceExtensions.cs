@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Penguin.Contracts;
+using Penguin.LoggerService;
 
 namespace Penguin.Api.Extensions
 {
@@ -37,6 +39,11 @@ namespace Penguin.Api.Extensions
             {
 
             });
+        }
+        
+        public static void ConfigureLoggerService(this IServiceCollection services)
+        {
+            services.AddSingleton<ILoggerManager, LoggerManager>();
         }
     }
 }
