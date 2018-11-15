@@ -26,6 +26,8 @@ namespace Penguin.Api
         {
             services.ConfigureLoggerService();
 
+            services.ConfigureDbContext(Configuration);
+
             services.ConfigureCors();
 
             services.ConfigureIISIntegration();

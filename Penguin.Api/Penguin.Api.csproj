@@ -11,10 +11,12 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Penguin.Contracts\Penguin.Contracts.csproj" />
+    <ProjectReference Include="..\Penguin.Entities\Penguin.Entities.csproj" />
     <ProjectReference Include="..\Penguin.LoggerService\Penguin.LoggerService.csproj" />
   </ItemGroup>
 

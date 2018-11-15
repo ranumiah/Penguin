@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Penguin.Contracts;
+using Penguin.Entities;
 using Penguin.LoggerService;
 
 namespace Penguin.Api.Extensions
@@ -45,5 +44,11 @@ namespace Penguin.Api.Extensions
         {
             services.AddSingleton<ILoggerManager, LoggerManager>();
         }
-    }
+ 
+        public static void ConfigureDbContext(this IServiceCollection services, IConfiguration config)
+        {
+            var connectionString = config["dbConnection:connectionString"];
+            services.AddDbContext<RepositoryContext>(o => o.UseSqlServer(connectionString));
+        }
+}
 }
