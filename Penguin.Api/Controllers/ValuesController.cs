@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Penguin.Contracts;
 
@@ -9,10 +10,12 @@ namespace Penguin.Api.Controllers
     public class ValuesController : ControllerBase
     {
         private readonly ILoggerManager _logger;
+        private readonly IRepositoryWrapper _repoWrapper;
 
-        public ValuesController(ILoggerManager logger)
+        public ValuesController(ILoggerManager logger, IRepositoryWrapper repoWrapper)
         {
             _logger = logger;
+            _repoWrapper = repoWrapper;
         }
         // GET api/values
         [HttpGet]
@@ -23,32 +26,12 @@ namespace Penguin.Api.Controllers
             _logger.LogWarn("Here is warn message from our values controller.");
             _logger.LogError("Here is error message from our values controller.");
 
-            return new string[] { "value1", "value2" };
-        }
+            var domesticAccounts = _repoWrapper.Account.FindByCondition(x => x.AccountType.Equals("Domestic"));
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
+            var owners = _repoWrapper.Owner.FindAll();
+            var names = owners.Select(owner => owner.Name).ToList();
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return names;
         }
     }
 }

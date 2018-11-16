@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Penguin.Contracts;
 using Penguin.Entities;
 using Penguin.LoggerService;
+using Penguin.Repository;
 
 namespace Penguin.Api.Extensions
 {
@@ -34,21 +35,23 @@ namespace Penguin.Api.Extensions
 
         public static void ConfigureIISIntegration(this IServiceCollection services)
         {
-            services.Configure<IISOptions>(options =>
-            {
-
-            });
+            services.Configure<IISOptions>(options => { });
         }
-        
+
         public static void ConfigureLoggerService(this IServiceCollection services)
         {
             services.AddSingleton<ILoggerManager, LoggerManager>();
         }
- 
+
         public static void ConfigureDbContext(this IServiceCollection services, IConfiguration config)
         {
             var connectionString = config["dbConnection:connectionString"];
             services.AddDbContext<RepositoryContext>(o => o.UseSqlServer(connectionString));
         }
-}
+
+        public static void ConfigureRepositoryWrapper(this IServiceCollection services)
+        {
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+        }
+    }
 }

@@ -18,6 +18,7 @@
     <ProjectReference Include="..\Penguin.Contracts\Penguin.Contracts.csproj" />
     <ProjectReference Include="..\Penguin.Entities\Penguin.Entities.csproj" />
     <ProjectReference Include="..\Penguin.LoggerService\Penguin.LoggerService.csproj" />
+    <ProjectReference Include="..\Penguin.Repository\Penguin.Repository.csproj" />
   </ItemGroup>
 
 </Project>

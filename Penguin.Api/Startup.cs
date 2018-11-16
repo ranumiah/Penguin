@@ -32,6 +32,8 @@ namespace Penguin.Api
 
             services.ConfigureIISIntegration();
 
+            services.ConfigureRepositoryWrapper();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
