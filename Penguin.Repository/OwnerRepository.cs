@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Penguin.Contracts;
 using Penguin.Entities;
 using Penguin.Entities.ExtendedModels;
+using Penguin.Entities.Extensions;
 using Penguin.Entities.Models;
 
 namespace Penguin.Repository
@@ -16,23 +18,43 @@ namespace Penguin.Repository
 
         public IEnumerable<Owner> GetAllOwners()
         {
-            throw new NotImplementedException();
+            return FindAll()
+                .OrderBy(ow => ow.Name);
         }
 
         public Owner GetOwnerById(Guid ownerId)
         {
-            throw new NotImplementedException();
+            return FindByCondition(owner => owner.Id.Equals(ownerId))
+                .DefaultIfEmpty(new Owner())
+                .FirstOrDefault();
         }
 
         public OwnerExtended GetOwnerWithDetails(Guid ownerId)
         {
-            throw new NotImplementedException();
+            return new OwnerExtended(GetOwnerById(ownerId))
+            {
+                Accounts = RepositoryContext.Accounts
+                    .Where(a => a.OwnerId == ownerId)
+            };
         }
 
         public void CreateOwner(Owner owner)
         {
-            owner.OwnerId = Guid.NewGuid();
+            owner.Id = Guid.NewGuid();
             Create(owner);
+            Save();
+        }
+
+        public void UpdateOwner(Owner dbOwner, Owner owner)
+        {
+            dbOwner.Map(owner);
+            Update(dbOwner);
+            Save();
+        }
+
+        public void DeleteOwner(Owner owner)
+        {
+            Delete(owner);
             Save();
         }
     }

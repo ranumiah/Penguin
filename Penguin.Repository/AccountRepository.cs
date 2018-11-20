@@ -1,5 +1,8 @@
-﻿using Penguin.Contracts;
+﻿using System;
+using System.Collections.Generic;
+using Penguin.Contracts;
 using Penguin.Entities;
+using Penguin.Entities.Models;
 
 namespace Penguin.Repository
 {
@@ -8,6 +11,11 @@ namespace Penguin.Repository
         public AccountRepository(RepositoryContext repositoryContext)
             : base(repositoryContext)
         {
+        }
+
+        public IEnumerable<Account> AccountsByOwner(Guid ownerId)
+        {
+            return FindByCondition(a => a.OwnerId.Equals(ownerId));
         }
     }
 }

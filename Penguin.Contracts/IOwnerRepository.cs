@@ -11,5 +11,7 @@ namespace Penguin.Contracts
         Owner GetOwnerById(Guid ownerId);
         OwnerExtended GetOwnerWithDetails(Guid ownerId);
         void CreateOwner(Owner owner);
+        void UpdateOwner(Owner dbOwner, Owner owner);
+        void DeleteOwner(Owner owner);
     }
 }

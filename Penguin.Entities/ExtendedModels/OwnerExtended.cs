@@ -20,7 +20,7 @@ namespace Penguin.Entities.ExtendedModels
 
         public OwnerExtended(Owner owner)
         {
-            Id = owner.OwnerId;
+            Id = owner.Id;
             Name = owner.Name;
             DateOfBirth = owner.DateOfBirth;
             Address = owner.Address;
