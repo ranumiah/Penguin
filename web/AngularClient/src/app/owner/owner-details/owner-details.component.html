@@ -35,23 +35,4 @@
   </ng-template>
 </div>
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Account type</th>
-            <th>Date created</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let account of owner?.accounts">
-            <td>{{account?.accountType}}</td>
-            <td>{{account?.dateCreated | date: 'dd/MM/yyyy'}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+<app-ownersaccounts [accounts]="owner?.accounts"></app-ownersaccounts>
