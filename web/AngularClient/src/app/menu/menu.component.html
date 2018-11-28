@@ -5,8 +5,9 @@
                 [routerLinkActiveOptions]="{exact: true}">Account-Owner Home</a>
     </div>
     <ul class="nav">
-      <li class="nav-item"><a href="#">Owner Actions</a></li>
-      <li class="nav-item"><a href="#">Account Actions</a></li>
+      <li><a [routerLink]="['/owner/list']" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">Owner Actions</a></li>
+      <li><a href="#">Account Actions</a></li>
     </ul>
   </div>
 </nav>
