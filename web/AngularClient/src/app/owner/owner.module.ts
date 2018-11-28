@@ -3,16 +3,19 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { OwnerListComponent } from './owner-list/owner-list.component';
+import { OwnerDetailsComponent } from './owner-details/owner-details.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: 'list', component: OwnerListComponent }
+      { path: 'list', component: OwnerListComponent },
+      { path: 'details/:id', component: OwnerDetailsComponent }
     ])
   ],
   declarations: [
-    OwnerListComponent
+    OwnerListComponent,
+    OwnerDetailsComponent
   ]
 })
 export class OwnerModule { }
