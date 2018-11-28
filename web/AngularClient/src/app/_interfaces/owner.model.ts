@@ -3,4 +3,6 @@ export interface Owner{
     name: string;
     dateOfBirth: Date;
     address: string;
+
+    accounts?: Account[];
 }
