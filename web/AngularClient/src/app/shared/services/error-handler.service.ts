@@ -31,9 +31,9 @@ export class ErrorHandlerService {
   }
 
   private handleOtherError(error: HttpErrorResponse){
-    this.createErrorMessage(error);
-    //TODO: this will be fixed later;
-  }
+      this.createErrorMessage(error);
+      $('#errorModal').modal();
+    }
 
   private createErrorMessage(error: HttpErrorResponse){
     this.errorMessage = error.error ? error.error : error.statusText;
