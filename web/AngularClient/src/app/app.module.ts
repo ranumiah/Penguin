@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -37,7 +38,8 @@ import { ErrorHandlerService } from './shared/services/error-handler.service';
   providers: [
     EnvironmentUrlService,
     RepositoryService,
-    ErrorHandlerService
+    ErrorHandlerService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
